@@ -11,8 +11,9 @@ class SetEnvSecret(Job):
 
     def run(self, *, secret_name, secret_value):
         try:
-            os.environ[secret_name]=secret_value
-            os.putenv(secret_name,secret_value)
+            #os.environ[secret_name]=secret_value
+            #os.putenv(secret_name,secret_value)
+            os.system(f"export {secret_name}=\"{secret_value}\"")
             self.logger.info(f"Saved to {secret_name}")
         except Exception as e:
             self.logger.error(f"Error: {str(e)}")
